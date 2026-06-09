@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block title %}Analysis Result{% endblock %}
+
+{% block content %}
+
+<div style="background:linear-gradient(
+    135deg,#0a0a1a,#1a1a3e);
+    color:white;text-align:center;
+    padding:40px 30px;">
+    <h1>ECG <span style="color:#00d4ff;">
+            Analysis Result</span></h1>
+</div>
+
+<div class="result-container">
+
+    <!-- MAIN RESULT CARD -->
+    <div class="result-card">
+        <div class="result-header">
+            <h2 style="color:#555;
+                       margin-bottom:15px;">
+                Detected Condition:
+            </h2>
+            <h2 style="font-size:1.8rem;
+                       color:#1a1a3e;
+                       margin-bottom:15px;">
+                {{ result.class }}
+            </h2>
+            <div class="risk-badge-{{
+                class_info.color }}">
+                {{ class_info.risk }}
+            </div>
+        </div>
+
+        <p style="color:#555;
+                  line-height:1.7;
+                  margin:20px 0;
+                  padding:15px;
+                  background:#f9f9f9;
+                  border-radius:10px;">
+            {{ class_info.description }}
+        </p>
+
+        <div style="background:#fff8e1;
+                    border-left:4px solid
+                    #ffa502;padding:15px;
+                    border-radius:8px;
+                    margin-bottom:20px;">
+            <strong>Medical Advice:</strong>
+            {{ class_info.advice }}
+        </div>
+
+        <!-- Confidence Score -->
+        <h3 style="color:#1a1a3e;
+                   margin-bottom:15px;">
+            Confidence: {{ result.confidence }}%
+        </h3>
+        <div class="prob-bar">
+            <div class="prob-fill" data-width="{{ result.confidence }}" style="width:0%">
+            </div>
+        </div>
+    </div>
+
+    <!-- ALL PROBABILITIES -->
+    <div class="result-card">
+        <h3 style="color:#1a1a3e;
+                   margin-bottom:20px;">
+            📊 All Class Probabilities
+        </h3>
+        {% for cls, prob in
+        result.all_probabilities.items() %}
+        <div class="prob-bar-container">
+            <div class="prob-label">
+                <span>{{ cls }}</span>
+                <span>{{ prob }}%</span>
+            </div>
+            <div class="prob-bar">
+                <div class="prob-fill" data-width="{{ prob }}" style="width:0%">
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- GPU STATS -->
+    <div class="result-card">
+        <h3 style="color:#1a1a3e;
+                   margin-bottom:15px;">
+            ⚡ GPU Performance Stats
+        </h3>
+        <div class="gpu-info-box">
+            <div class="gpu-info-item">
+                <h4>{{ result.inference_time_ms }}ms</h4>
+                <p>Inference Time</p>
+            </div>
+            <div class="gpu-info-item">
+                <h4>{{ result.device.upper() }}</h4>
+                <p>Compute Device</p>
+            </div>
+            <div class="gpu-info-item">
+                <h4>ResNet-18</h4>
+                <p>Model Architecture</p>
+            </div>
+            <div class="gpu-info-item">
+                <h4>224×224</h4>
+                <p>Input Resolution</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div style="text-align:center;
+                margin-top:20px;
+                display:flex;gap:15px;
+                justify-content:center;
+                flex-wrap:wrap;">
+        <a href="/predict" class="btn">
+            🔄 Analyze Another ECG
+        </a>
+        <a href="/" class="btn btn-outline">
+            🏠 Home
+        </a>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div style="text-align:center;
+                margin-top:20px;
+                padding:15px;
+                background:#f9f9f9;
+                border-radius:10px;
+                font-size:0.8rem;
+                color:#999;">
+        ⚠️ This AI analysis is for
+        educational purposes only and
+        is NOT a medical diagnosis.
+        Always consult a qualified
+        cardiologist.
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+                   initial-scale=1.0">
+    <title>
+        {% block title %}ECG CardioAI{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static',
+          filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            🫀 Cardio<span>AI</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/predict">Analyze ECG</a></li>
+            <li><a href="/model_info">Model Info</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <p>© 2026 <span>CardioAI</span> —
+            GPU-Accelerated ECG Analysis |
+            Powered by NVIDIA H200</p>
+        <p style="margin-top:8px;font-size:0.8rem;">
+            ⚠️ Educational purposes only.
+            Always consult a doctor.
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static',
+    filename='js/main.js') }}">
+    </script>
+</body>
+
+</html>

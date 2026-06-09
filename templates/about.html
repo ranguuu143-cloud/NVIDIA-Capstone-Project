@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+
+<div style="background:linear-gradient(
+    135deg,#0a0a1a,#1a1a3e);
+    color:white;text-align:center;
+    padding:70px 30px;">
+    <h1>About <span style="color:#00d4ff;">
+            This Project</span></h1>
+    <p style="color:#aaa;margin-top:10px;
+              max-width:600px;margin-left:auto;
+              margin-right:auto;">
+        GPU-Accelerated Cardiac Abnormality
+        Detection — Presidency University
+        AI Internship Capstone 2026
+    </p>
+</div>
+
+<div class="section">
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">💔</div>
+            <h3>The Problem</h3>
+            <p>Heart disease causes 17M+
+                deaths annually. Early ECG
+                analysis is critical but
+                time-consuming manually.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>Our Solution</h3>
+            <p>CNN trained on NVIDIA H200 GPU
+                to classify ECG patterns
+                instantly with high accuracy.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>GPU Advantage</h3>
+            <p>H200 GPU delivers 10x faster
+                training vs CPU, enabling
+                real-time inference.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

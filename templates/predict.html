@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Analyze ECG{% endblock %}
+
+{% block content %}
+
+<div style="background:linear-gradient(
+    135deg,#0a0a1a,#1a1a3e);
+    color:white;text-align:center;
+    padding:60px 30px;">
+    <h1>ECG <span style="color:#00d4ff;">
+            Analysis</span></h1>
+    <p style="color:#aaa;margin-top:10px;">
+        Upload an ECG image for instant
+        GPU-powered cardiac analysis
+    </p>
+</div>
+
+<div style="max-width:700px;
+            margin:40px auto;
+            padding:0 20px;">
+    <div class="upload-box">
+
+        {% if error %}
+        <div style="background:#ffe0e0;
+                color:#c0392b;
+                padding:15px;
+                border-radius:10px;
+                margin-bottom:20px;">
+            ⚠️ {{ error }}
+        </div>
+        {% endif %}
+
+        <h2 style="color:#1a1a3e;
+               margin-bottom:5px;">
+            Upload ECG Image
+        </h2>
+        <p style="color:#777;
+              margin-bottom:20px;">
+            Supported formats: PNG, JPG, JPEG
+        </p>
+
+        <form action="/analyze" method="POST" enctype="multipart/form-data" class="upload-form">
+
+            <div class="upload-area" onclick="document.getElementById(
+                 'ecg-file-input').click()">
+                <div class="upload-icon">📈</div>
+                <p id="upload-text">
+                    Click to upload ECG image<br>
+                    <span style="color:#aaa;
+                             font-size:0.85rem;">
+                        or drag and drop here
+                    </span>
+                </p>
+                <input type="file" id="ecg-file-input" name="ecg_image" accept=".png,.jpg,.jpeg" required>
+            </div>
+
+            <div id="preview-container">
+                <p style="color:#555;
+                      margin-bottom:10px;">
+                    Preview:
+                </p>
+                <img id="preview-img" src="" alt="ECG Preview">
+            </div>
+
+            <div style="margin-top:25px;">
+                <button type="submit" class="btn btn-analyze" style="width:100%;
+                           padding:15px;
+                           font-size:1.1rem;">
+                    ⚡ Analyze on GPU
+                </button>
+            </div>
+
+            <p style="margin-top:15px;
+                  color:#999;
+                  font-size:0.8rem;">
+                ⚠️ For educational purposes only.
+                Consult a doctor for diagnosis.
+            </p>
+
+        </form>
+    </div>
+
+    <!-- Sample ECG hint -->
+    <div style="background:white;
+            border-radius:15px;
+            padding:25px;
+            margin-top:20px;
+            box-shadow:0 5px 20px
+            rgba(0,0,0,0.08);">
+        <h3 style="color:#1a1a3e;
+               margin-bottom:10px;">
+            💡 How to get an ECG image?
+        </h3>
+        <ul style="color:#555;
+               line-height:2;
+               padding-left:20px;">
+            <li>Use images from the
+                MIT-BIH dataset (Kaggle)</li>
+            <li>Use ECG printouts from
+                a hospital</li>
+            <li>Use online ECG sample images
+                for testing</li>
+            <li>Screenshot ECG from any
+                medical software</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

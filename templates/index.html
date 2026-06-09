@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}CardioAI — ECG Analysis{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="gpu-badge">
+        ⚡ Powered by NVIDIA H200 GPU
+    </div>
+    <h1>
+        Cardiac Abnormality Detection<br>
+        from <span>ECG Images</span>
+    </h1>
+    <p>
+        Deep Learning CNN model trained on
+        GPU to detect 5 types of cardiac
+        conditions from ECG signals with
+        high accuracy.
+    </p>
+    <a href="/predict" class="btn">
+        🔬 Analyze ECG Image
+    </a>
+    <a href="/about" class="btn btn-outline">
+        Learn More
+    </a>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <h2>
+                <span class="counter" data-target="{{ stats.best_accuracy|round(1) }}">
+                    0</span>%
+            </h2>
+            <p>Model Accuracy</p>
+        </div>
+        <div class="stat-item">
+            <h2>5</h2>
+            <p>ECG Classes Detected</p>
+        </div>
+        <div class="stat-item">
+            <h2>H200</h2>
+            <p>NVIDIA GPU Used</p>
+        </div>
+        <div class="stat-item">
+            <h2>ResNet</h2>
+            <p>CNN Architecture</p>
+        </div>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+    <h2 class="section-title">
+        What <span>CardioAI</span> Detects
+    </h2>
+    <div class="divider"></div>
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">💚</div>
+            <h3>Normal</h3>
+            <p>Normal sinus rhythm.
+                Heart functioning correctly
+                with regular electrical activity.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🟡</div>
+            <h3>Supraventricular</h3>
+            <p>Irregular electrical activity
+                originating above the
+                ventricular level.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔴</div>
+            <h3>Ventricular</h3>
+            <p>Potentially serious abnormal
+                heartbeat originating in the
+                ventricles. Needs urgent review.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🟠</div>
+            <h3>Fusion Beat</h3>
+            <p>Combination of normal and
+                abnormal beat patterns
+                occurring simultaneously.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔵</div>
+            <h3>Unknown</h3>
+            <p>Unclassified pattern requiring
+                expert manual review by a
+                cardiologist.</p>
+        </div>
+    </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div style="background:white;padding:70px 30px;">
+    <div class="section" style="padding:0;">
+        <h2 class="section-title">
+            How <span>It Works</span>
+        </h2>
+        <div class="divider"></div>
+        <div class="cards-grid" style="grid-template-columns:
+                repeat(3,1fr);">
+            <div class="card">
+                <div class="card-icon">📤</div>
+                <h3>1. Upload ECG</h3>
+                <p>Upload your ECG signal image
+                    in PNG or JPG format.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>2. GPU Analysis</h3>
+                <p>ResNet-18 CNN analyzes the
+                    image on NVIDIA H200 GPU
+                    in milliseconds.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>3. Get Result</h3>
+                <p>Receive classification result
+                    with confidence scores for
+                    all 5 categories.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div style="background:linear-gradient(
+    135deg,#00d4ff,#0099cc);
+    text-align:center;padding:70px 30px;">
+    <h2 style="color:white;font-size:2rem;
+               margin-bottom:15px;">
+        Ready to Analyze an ECG?
+    </h2>
+    <p style="color:rgba(255,255,255,0.9);
+              margin-bottom:25px;
+              font-size:1.1rem;">
+        Upload any ECG image and get
+        instant AI-powered analysis.
+    </p>
+    <a href="/predict" class="btn" style="background:white;
+              color:#0099cc;
+              font-weight:700;">
+        🚀 Start Analysis
+    </a>
+</div>
+
+{% endblock %}
